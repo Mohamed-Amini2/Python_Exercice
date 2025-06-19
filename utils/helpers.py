@@ -5,6 +5,7 @@ def load_image(path):
     if not path.lower().endswith(('.png', '.jpg', '.jpeg')):
         print("Error: Only .png or .jpg formats are supported.")
         return None
+    
     img = cv2.imread(path)
     if img is None:
         print("Error: Unable to load image. Check the file path.")

@@ -38,23 +38,26 @@ def capture_from_webcam():
 
 def main():
     print("Welcome to the Image Processing App!")
-    print("Choose how to get the image:")
-    print("1. Load from file")
-    print("2. Capture from webcam")
-    choice = input("Enter 1 or 2: ")
+    
+    # Loop until valid image is loaded
+    img = None
+    while img is None:
+        print("\nChoose how to get the image:")
+        print("1. Load from file")
+        print("2. Capture from webcam")
+        choice = input("Enter 1 or 2: ")
 
-    if choice == "1":
-        image_path = input("Enter image path: ")
-        img = load_image(image_path)
-    elif choice == "2":
-        print("Connecting to webcam...")
-        img = capture_from_webcam()
-    else:
-        print("Invalid choice.")
-        return
-
-    if img is None:
-        return
+        if choice == "1":
+            image_path = input("Enter image path: ")
+            img = load_image(image_path)
+        elif choice == "2":
+            print("Connecting to webcam...")
+            img = capture_from_webcam()
+        else:
+            print("Invalid choice. Try again.")
+        
+        if img is None:
+            print("Please try again with a valid image source.")
 
     # Show original image
     cv2.imshow("Original Image", img)
