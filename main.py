@@ -1,5 +1,5 @@
 import cv2
-from utils.helpers import load_image, save_image, validate_numeric_input
+from utils.helpers import load_image, save_image
 from image_processing.resize import resize_image
 from image_processing.brightness import decrease_brightness
 from image_processing.draw import draw_red_circle
@@ -8,15 +8,15 @@ import numpy as np
 def show_channels(img):
     """Displays the red, green, and blue channels of the image."""
     channels = {
-        "Red": cv2.merge([img[:, :, 0], 
-                          np.zeros_like(img[:, :, 1]), 
-                          np.zeros_like(img[:, :, 2])]),
-        "Green": cv2.merge([np.zeros_like(img[:, :, 0]), 
-                            img[:, :, 1], 
-                            np.zeros_like(img[:, :, 2])]),
-        "Blue": cv2.merge([np.zeros_like(img[:, :, 0]), 
-                           np.zeros_like(img[:, :, 1]), 
-                           img[:, :, 2]])
+        "Red": cv2.merge([img[:, :, 0],
+            np.zeros_like(img[:, :, 1]),
+            np.zeros_like(img[:, :, 2])]),
+        "Green": cv2.merge([np.zeros_like(img[:, :, 0]),
+            img[:, :, 1], 
+            np.zeros_like(img[:, :, 2])]),
+        "Blue": cv2.merge([np.zeros_like(img[:, :, 0]),
+            np.zeros_like(img[:, :, 1]),
+            img[:, :, 2]])
     }
     for name, channel in channels.items():
         cv2.imshow(f"{name} Channel", channel)
@@ -39,7 +39,6 @@ def capture_from_webcam():
 def main():
     print("Welcome to the Image Processing App!")
     
-    # Loop until valid image is loaded
     img = None
     while img is None:
         print("\nChoose how to get the image:")
@@ -59,15 +58,10 @@ def main():
         if img is None:
             print("Please try again with a valid image source.")
 
-    # Show original image
     cv2.imshow("Original Image", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
-    # Show color channels
     show_channels(img)
-
-    # Select task
     print("\nChoose an action:")
     print("1. Resize Image")
     print("8. Decrease Brightness")
@@ -90,12 +84,10 @@ def main():
         print("Invalid task selection.")
         return
 
-    # Show result
     cv2.imshow("Result", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    # Save result
     save_path = input("Enter output file path (e.g., output.jpg): ")
     save_image(img, save_path)
 
