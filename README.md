@@ -1,5 +1,5 @@
 ```markdown
-# Image Processing Application (Variant 5)
+# Image Processing Application (Variant 1)
 
 Приложение для обработки изображений с возможностью:
 
